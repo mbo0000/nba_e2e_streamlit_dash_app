@@ -1,16 +1,26 @@
 import streamlit as st
 
-_conn = st.connection("snowflake")
-_tables = ['PLAYER_GAME_STAT','GAMES','TEAM_YOY_STAT','TEAMS','TEAM_ROSTER', 'PLAYER_CUM_STAT']
+_CONN = st.connection("snowflake")
+_SOURCE = {
+    'clean' : {
+        'nba': ['PLAYER_GAME_STAT','GAMES','TEAM_YOY_STAT','TEAMS','TEAM_ROSTER']
+    }
+    , 'analytics' : {
+        'nba' : ['PLAYER_CUM_STAT', 'TEAM_STAT_EXTENDED']
+    }
+}
 
 @st.cache_data(ttl=3600)
-def get_all_tables_data():
-    table_dict              = {}
+def _get_all_tables_data():
+    table_dfs              = {}
 
-    for table in _tables:
-        df                  = _conn.query(f'select * from {table};')
-        table_dict[table]   = df
+    for db, val in _SOURCE.items():
+        schema = list(val.keys())[0]
+        
+        for table in val[schema]:
+            query             = f'select * from {db}.{schema}.{table};'
+            table_dfs[table]  = _CONN.query(query)
 
-    return table_dict
+    return table_dfs
 
-NBA_DATA = get_all_tables_data()
+NBA_DATA = _get_all_tables_data()
