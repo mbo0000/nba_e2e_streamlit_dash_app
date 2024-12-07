@@ -24,7 +24,7 @@ class Snowf:
 
         for db, val in _SOURCE.items():
             schema = list(val.keys())[0]
-
+            
             for table in val[schema]:
                 query             = f'select * from {db}.{schema}.{table};'
                 table_dfs[table]  = conn.query(query)
@@ -42,6 +42,6 @@ class Snowf:
 
     def get_data_team_roster(self):
         return self._get_all_tables_data()['TEAM_ROSTER']
-
+    
     def get_data_team_stat_ext(self):
         return self._get_all_tables_data()['TEAM_STAT_EXTENDED']
