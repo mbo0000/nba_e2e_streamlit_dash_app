@@ -121,11 +121,7 @@ with radar_col:
 
 with scatter_col:
     st.markdown("<h3 style='text-align: center; color: grey;'>Offensive vs Defensive Ratings</h3>", unsafe_allow_html=True)
-<<<<<<< HEAD
     df                                              = team_stat[team_stat['YEAR'] == year_select].copy()
-=======
-    df                                              = team_stat[team_stat['YEAR'] == year_select]
->>>>>>> main
     df['COLOR']                                     = "#0000FF" 
     df['SIZE']                                      = 10
     df.loc[df['TEAM_NAME'] == team_select, 'COLOR'] = "#FF0000"
