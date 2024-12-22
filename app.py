@@ -6,7 +6,6 @@ st.set_page_config(
 )
 
 pg = st.navigation([
-        # st.Page("src/pages/league_standing.py")
         st.Page("src/pages/team_season_stat.py")
     ])
 pg.run()
