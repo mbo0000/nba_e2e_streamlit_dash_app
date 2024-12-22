@@ -99,6 +99,8 @@ team_list           = set(sorted(team_stat['TEAM_NAME']))
 
 with st.sidebar:
     st.title('Team Stat')
+    st.markdown('For more info, visit [Github repo](https://github.com/mbo0000/nba_e2e_data_pipeline)')
+    st.divider()
 
     year_select         = st.selectbox(
                                 'Select Season Year'
@@ -143,6 +145,7 @@ with st.container(height=150, border=False):
                     st.subheader(k)
                     st.text(val)
                 idx += 1
+st.divider()
 
 #================================================================================================================#
 #-TRADITIONAL STATS----------------------------------------------------------------------------------------------#
@@ -172,7 +175,8 @@ with st.container(height=150, border=False):
             value = round(curr_year_stats[label].iloc[0],2)
             delta = round(curr_year_stats[label].iloc[0] - prev_year_stats[label].iloc[0],2)
             col.metric(label = label, value = value, delta = delta)
-    
+
+st.divider()
 #================================================================================================================#
 #-RADAR & SCATTER CHARTS-----------------------------------------------------------------------------------------#
 #================================================================================================================#
