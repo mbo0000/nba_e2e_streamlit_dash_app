@@ -116,6 +116,11 @@ with st.sidebar:
                                 , placeholder   = 'Lakers'
                             )
 
+    if st.button("Clear Data"):
+        st.cache_data.clear()
+
+    st.text('Refresh your browser.')
+
 # set default values on load
 if year_select == None:
     year_select         = 2024
